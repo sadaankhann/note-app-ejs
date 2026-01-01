@@ -29,9 +29,17 @@ app.get('/Files/delete/:filename', function(req,res){
 app.get('/Files/:filename', function(req,res){
 
     fs.readFile(`./Files/${req.params.filename}`, "utf8" ,function(err, data){
-        res.render('showDetails', {data : data});
+        res.render('showDetails', {filename : req.params.filename, data : data});
     })
 
+})
+
+app.post('/rename', function(req,res){
+    const oldName = `./Files/${req.body.oldFileName}`;
+    const newName = `./Files/${req.body.title.trim().split(' ').join('')}.txt`;
+    fs.rename(oldName,newName, function(err){
+        res.redirect(`/Files/${req.body.title.trim().split(' ').join('')}.txt`);
+    });
 })
 
 app.listen(3000, ()=>{

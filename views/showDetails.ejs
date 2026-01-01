@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
 </head>
+
 <body>
-    <div class="main w-full min-h-screen bg-zinc-900 p-10 text-underline">
-        <h2 class="text-2xl text-white">File Data</h2>
-        <div class="h-[100px] mt-8 w-full rounded-md bg-zinc-500 p-6 ">
+    <div class="relative main w-full min-h-screen bg-zinc-900 p-10 text-underline">
+        <a href="/" class="text-blue-500 mb-5 ">Go back to home</a>
+        <h2 class="mt-8 text-2xl text-white">
+            <%= filename %>
+        </h2>
+        <div class="h-[100px] mt-8 w-full rounded-md bg-zinc-600 text-white p-6 ">
             <%=data%>
         </div>
+        <button class="btn absolute top-8 right-9 rounded-lg p-2 pl-4 pr-4 text-white bg-blue-500 font-bold text-md">Rename Task</button>
     </div>
 
+    <div
+        class="hidden second absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rename-file flex justify-start p-4 z-[1000] h-[300px] w-[400px] rounded-md bg-black text-white">
+        <form method="post" action="\rename">
+            <input type="hidden" name="oldFileName" value = "<%= filename %>">
+            <h6>Enter New Name</h6>
+            <input type="text" name="title" id="" class="w-full h-[30%] rounded-md bg-zinc-600 text-white outline-none" />
+            <div class="flex justify-end items-end mt-9 font-bold ">
+                <input type="button" value="Cancel" class="bg-blue-500 text-white p-2 rounded-sm pl-9 pr-9  ">
+                <input type="submit" value="Done" class="bg-blue-500 text-white p-2 rounded-sm pl-9 pr-9 ">
+            </div>
+
+        </form>
+    </div>
+
+    <script src="../javascripts/javaS.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </body>
+
 </html>
